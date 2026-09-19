@@ -71,10 +71,10 @@ export class PaymentsController {
         const paymentIntent =
           await this.stripe.paymentIntents.retrieve(paymentIntentId);
         const orderId = paymentIntent.metadata.orderId;
-        console.log(`Pago exitoso para el orderId: ${orderId}`); //[cite: 1]
+        console.log(`Pago exitoso para el orderId: ${orderId}`);
       }
     } else {
-      console.log(`Evento no manejado: ${event.type}`); //[cite: 1]
+      console.log(`Evento no manejado: ${event.type}`);
     }
 
     return { received: true };

@@ -37,7 +37,7 @@ export class PaymentsService {
       cancel_url: cancelUrl,
       payment_intent_data: {
         metadata: {
-          orderId: orderId, // Requisito: el orderId viaja en el metadata[cite: 1]
+          orderId: orderId, // Requisito: el orderId viaja en el metadata
         },
       },
     });
