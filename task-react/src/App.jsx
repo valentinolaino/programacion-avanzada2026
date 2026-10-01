@@ -23,6 +23,7 @@ function App() {
         return {
           ...tarea,
           estado: "Finalizada",
+          fechaCierre: new Date().toISOString().split("T")[0],
         };
       }
 
@@ -39,6 +40,15 @@ function App() {
   function actualizarTarea(tareaActualizada) {
     const nuevasTareas = tareas.map((tarea, i) => {
       if (i === tareaEditando) {
+        if (tarea.estado === "Finalizada") {
+          return {
+            ...tarea,
+            ...tareaActualizada,
+            estado: "Finalizada",
+            fechaCierre: tarea.fechaCierre,
+          };
+        }
+
         return tareaActualizada;
       }
 
@@ -53,17 +63,21 @@ function App() {
     <>
       <h1>Gestor de Tareas</h1>
 
-      <FormularioTarea
-        onAgregarTarea={agregarTarea}
-        tareaEditando={tareaEditando !== null ? tareas[tareaEditando] : null}
-        onActualizarTarea={actualizarTarea}
-      />
+      {tareaEditando === null && (
+        <FormularioTarea
+          onAgregarTarea={agregarTarea}
+          tareaEditando={null}
+          onActualizarTarea={actualizarTarea}
+        />
+      )}
 
       <ListadoTareas
         tareas={tareas}
+        tareaEditando={tareaEditando !== null ? tareas[tareaEditando] : null}
         onEliminarTarea={eliminarTarea}
         onFinalizarTarea={finalizarTarea}
         onEditarTarea={editarTarea}
+        onActualizarTarea={actualizarTarea}
       />
     </>
   );

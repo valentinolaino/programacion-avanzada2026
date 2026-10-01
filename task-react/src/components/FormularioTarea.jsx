@@ -51,6 +51,22 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    if (
+      !nombreProyecto ||
+      !tipoActividad ||
+      !estado ||
+      !prioridad ||
+      !resumen ||
+      !descripcion ||
+      !informador ||
+      !personaAsignada ||
+      !fechaCreacion ||
+      !sprint
+    ) {
+      alert("Completá todos los campos obligatorios.");
+      return;
+    }
+
     const tarea = {
       nombreProyecto,
       tipoActividad,
@@ -75,7 +91,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
 
   return (
     <section>
-      <h2>Nueva tarea</h2>
+      <h2>{tareaEditando ? "Editar tarea" : "Nueva tarea"}</h2>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="nombreProyecto">Nombre del Proyecto</label>
@@ -85,6 +101,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="nombreProyecto"
           value={nombreProyecto}
           onChange={(e) => setNombreProyecto(e.target.value)}
+          required
         />
 
         <label htmlFor="tipoActividad">Tipo de Actividad</label>
@@ -93,6 +110,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="tipoActividad"
           value={tipoActividad}
           onChange={(e) => setTipoActividad(e.target.value)}
+          required
         >
           <option value="">Seleccionar</option>
           <option value="Tarea">Tarea</option>
@@ -107,6 +125,8 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="estado"
           value={estado}
           onChange={(e) => setEstado(e.target.value)}
+          required
+          disabled={tareaEditando?.estado === "Finalizada"}
         >
           <option value="">Seleccionar</option>
           <option value="Pendiente">Pendiente</option>
@@ -120,6 +140,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="prioridad"
           value={prioridad}
           onChange={(e) => setPrioridad(e.target.value)}
+          required
         >
           <option value="">Seleccionar</option>
           <option value="Baja">Baja</option>
@@ -142,6 +163,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="descripcion"
           value={descripcion}
           onChange={(e) => setDescripcion(e.target.value)}
+          required
         />
 
         <label htmlFor="informador">Informador</label>
@@ -151,6 +173,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="informador"
           value={informador}
           onChange={(e) => setInformador(e.target.value)}
+          required
         />
 
         <label htmlFor="personaAsignada">Persona asignada</label>
@@ -160,6 +183,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="personaAsignada"
           value={personaAsignada}
           onChange={(e) => setPersonaAsignada(e.target.value)}
+          required
         />
 
         <label htmlFor="precondicion">Precondición</label>
@@ -177,6 +201,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="fechaCreacion"
           value={fechaCreacion}
           onChange={(e) => setFechaCreacion(e.target.value)}
+          required
         />
 
         <label htmlFor="fechaCierre">Fecha de Cierre</label>
@@ -186,6 +211,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="fechaCierre"
           value={fechaCierre}
           onChange={(e) => setFechaCierre(e.target.value)}
+          disabled={tareaEditando?.estado === "Finalizada"}
         />
 
         <label htmlFor="sprint">Sprint</label>
@@ -195,6 +221,7 @@ function FormularioTarea({ onAgregarTarea, tareaEditando, onActualizarTarea }) {
           id="sprint"
           value={sprint}
           onChange={(e) => setSprint(e.target.value)}
+          required
         />
 
         <button type="submit">
