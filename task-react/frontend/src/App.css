@@ -1,11 +1,3 @@
-/* ============================================================
-   Estilos de la aplicación — template Figma
-   Todoselector de etiqueta: no se modifica ningún .jsx
-   ============================================================ */
-
-/* ------------------------------------------------------------
-   Header sticky (equivalente al <header> del template)
-   ------------------------------------------------------------ */
 #root > h1 {
   position: sticky;
   top: 0;
@@ -36,9 +28,6 @@
   box-shadow: 0 0 0 4px var(--primary-soft);
 }
 
-/* ------------------------------------------------------------
-   Secciones = tarjetas blancas
-   ------------------------------------------------------------ */
 #root > section {
   margin: 24px;
   padding: 24px;
@@ -104,10 +93,6 @@
   background: var(--primary);
 }
 
-/* El panel va anidado, así que su form usa 2 pares label/control por
-   fila para quedar compacto y no obligar a scrollear hasta el botón.
-   El orden del DOM (label, control, label, control...) mantiene el
-   emparejamiento correcto. */
 #root > section section form {
   grid-template-columns:
     110px minmax(0, 1fr)
@@ -115,9 +100,6 @@
   column-gap: 12px 14px;
 }
 
-/* Los textarea ocupan la fila completa y su label va en la fila de
-   arriba. Sin esto el label del textarea queda huérfano en la
-   esquina por el auto-placement de la grilla. */
 #root > section section form textarea {
   grid-column: 1 / -1;
 }
@@ -229,7 +211,6 @@ form textarea:focus {
   box-shadow: 0 0 0 3px rgb(129 140 248 / 20%);
 }
 
-/* Select: flecha propia + estado disabled */
 form select {
   appearance: none;
   padding-right: 34px;
@@ -248,7 +229,6 @@ form select:disabled {
   cursor: not-allowed;
 }
 
-/* Icono del date picker */
 form input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.55;
   cursor: pointer;
@@ -383,7 +363,6 @@ article p:nth-of-type(3) {
   color: var(--warn-fg);
 }
 
-/* --- Filas clave / valor (Resumen → Sprint) --- */
 article p:nth-of-type(n + 4) {
   display: grid;
   grid-template-columns: 150px minmax(0, 1fr);
