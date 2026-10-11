@@ -1,30 +1,17 @@
 {
-  "name": "billing-service",
-  "version": "0.1.0",
+  "name": "activation-poc",
   "private": true,
-  "description": "Crea y anula cuentas de facturación simuladas",
+  "version": "0.1.0",
+  "description": "POC Activación de Servicios con Kafka (NestJS + React + PostgreSQL)",
   "scripts": {
-    "build": "nest build",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:prod": "node dist/main"
+    "build:libs": "pnpm --filter \"@activation-poc/*\" build",
+    "dev:activation-api": "pnpm --filter activation-api start:dev",
+    "dev:billing": "pnpm --filter billing-service start:dev",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down"
   },
-  "dependencies": {
-    "@activation-poc/contracts": "workspace:*",
-    "@activation-poc/kafka-toolkit": "workspace:*",
-    "@nestjs/common": "^11.0.0",
-    "@nestjs/core": "^11.0.0",
-    "@nestjs/microservices": "^11.0.0",
-    "@nestjs/typeorm": "^11.0.0",
-    "kafkajs": "^2.2.4",
-    "pg": "^8.13.0",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1",
-    "typeorm": "^0.3.20"
-  },
-  "devDependencies": {
-    "@nestjs/cli": "^11.0.0",
-    "@types/node": "^22.0.0",
-    "typescript": "^5.6.0"
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=20"
   }
 }

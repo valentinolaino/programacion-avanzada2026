@@ -27,7 +27,11 @@ services:
       # Los topics se crean explícitamente con create-topics.sh, no automáticamente
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
     healthcheck:
-      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:19092 > /dev/null 2>&1"]
+      test:
+        [
+          "CMD-SHELL",
+          "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:19092 > /dev/null 2>&1",
+        ]
       interval: 10s
       timeout: 10s
       retries: 10
@@ -63,7 +67,9 @@ services:
     image: postgres:16-alpine
     container_name: postgres
     ports:
-      - "5432:5432"
+      # En tu PC el puerto es 5433 (el 5432 suele estar ocupado por un PostgreSQL instalado).
+      # Dentro de Docker, los servicios siguen hablando con postgres:5432.
+      - "15432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

@@ -9,6 +9,7 @@
 export const config = {
   port: Number(process.env.PORT ?? 3000),
   databaseUrl:
-    process.env.DATABASE_URL ?? 'postgres://postgres:postgres@localhost:5432/activation_db',
-  kafkaClientId: process.env.KAFKA_CLIENT_ID ?? 'activation-api',
+    process.env.DATABASE_URL ??
+    "postgres://postgres:postgres@localhost:15432/activation_db",
+  kafkaClientId: process.env.KAFKA_CLIENT_ID ?? "activation-api",
 };

@@ -7,8 +7,9 @@ import { CONSUMER_GROUPS } from '@activation-poc/contracts';
  */
 export const config = {
   databaseUrl:
-    process.env.DATABASE_URL ?? 'postgres://postgres:postgres@localhost:5432/billing_db',
-  kafkaClientId: process.env.KAFKA_CLIENT_ID ?? 'billing-service',
+    process.env.DATABASE_URL ??
+    "postgres://postgres:postgres@localhost:15432/billing_db",
+  kafkaClientId: process.env.KAFKA_CLIENT_ID ?? "billing-service",
   // Todas las instancias de billing comparten el mismo groupId: así Kafka se reparte
   // las particiones entre ellas (escenario 4 de la demo).
   kafkaGroupId: process.env.KAFKA_GROUP_ID ?? CONSUMER_GROUPS.BILLING,
